@@ -36,6 +36,7 @@
 
 - (void)request:(NSString*)type completionHandler:(void (^)(NSString *))completionHandler
 {
+#if 0
     NSString *status = [RNPLocation getStatusForType:nil];
     if (status == RNPStatusUndetermined) {
         self.completionHandler = completionHandler;
@@ -57,6 +58,7 @@
             completionHandler(status);
         }
     }
+#endif
 }
 
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {

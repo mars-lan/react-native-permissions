@@ -46,6 +46,7 @@
 
 + (void)request:(void (^)(NSString *))completionHandler
 {
+#if 0
     void (^handler)(BOOL, NSError * _Nullable) =  ^(BOOL granted, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             completionHandler([self.class getStatus]);
@@ -63,6 +64,7 @@
         NSError *err = (__bridge NSError *)error;
         handler(granted, err);
     });
+#endif
 #endif
 }
 

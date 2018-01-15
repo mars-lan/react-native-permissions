@@ -10,6 +10,7 @@
 
 + (NSString *)getStatus
 {
+#if 0
     if (![CMMotionActivityManager isActivityAvailable]) {
         return RNPStatusRestricted;
     }
@@ -32,10 +33,14 @@
     } else {
         return RNPStatusRestricted;
     }
+#else
+    return @"";
+#endif
 }
 
 + (void)request:(void (^)(NSString *))completionHandler
 {
+#if 0
     __block NSString *status = [RNPMotion getStatus];
     
     if ([status isEqual: RNPStatusUndetermined]) {
@@ -58,5 +63,6 @@
     } else {
         completionHandler(status);
     }
+#endif
 }
 @end

@@ -18,6 +18,7 @@
 
 + (NSString *)getStatus
 {
+#if 0
     int status = [CBPeripheralManager authorizationStatus];
     switch (status) {
         case CBPeripheralManagerAuthorizationStatusAuthorized:
@@ -29,10 +30,14 @@
         default:
             return RNPStatusUndetermined;
     }
+#else
+  return @"";
+#endif
 }
 
 - (void)request:(void (^)(NSString *))completionHandler
 {
+#if 0
     NSString *status = [RNPBluetooth getStatus];
     
     if (status == RNPStatusUndetermined) {
@@ -43,10 +48,12 @@
     } else {
         completionHandler(status);
     }
+#endif
 }
 
 - (void) peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheralManager
 {
+#if 0
     if (self.peripheralManager) {
         [self.peripheralManager stopAdvertising];
         self.peripheralManager.delegate = nil;
@@ -60,6 +67,7 @@
             self.completionHandler = nil;
         });
     }
+#endif
     
 }
 

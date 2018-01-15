@@ -29,12 +29,14 @@
 
 + (void)request:(NSString *)type completionHandler:(void (^)(NSString *))completionHandler
 {
+#if 0
     EKEventStore *aStore = [[EKEventStore alloc] init];
     [aStore requestAccessToEntityType:[self typeFromString:type] completion:^(BOOL granted, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             completionHandler([self getStatus:type]);
         });
     }];
+#endif
 }
 
 +(EKEntityType)typeFromString:(NSString *)string {

@@ -13,6 +13,7 @@
 
 + (NSString *)getStatus
 {
+#if 0
     int status = [MPMediaLibrary authorizationStatus];
     switch (status) {
         case MPMediaLibraryAuthorizationStatusAuthorized:
@@ -24,10 +25,14 @@
         default:
             return RNPStatusUndetermined;
     }
+#else
+    return @"";
+#endif
 }
 
 + (void)request:(void (^)(NSString *))completionHandler
 {
+#if 0
     void (^handler)(void) =  ^(void) {
         dispatch_async(dispatch_get_main_queue(), ^{
             completionHandler([self.class getStatus]);
@@ -37,5 +42,6 @@
     [MPMediaLibrary requestAuthorization:^(MPMediaLibraryAuthorizationStatus status){
         handler();
     }];
+#endif
 }
 @end
